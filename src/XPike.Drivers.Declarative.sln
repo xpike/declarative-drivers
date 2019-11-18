@@ -1,0 +1,81 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{E3CDB1A3-8546-4655-9717-EAA972BC5AD4}"
+	ProjectSection(SolutionItems) = preProject
+		..\.editorconfig = ..\.editorconfig
+		..\.gitignore = ..\.gitignore
+		..\azure-pipelines.yml = ..\azure-pipelines.yml
+		common.build.props = common.build.props
+		..\xpike-pacakge-icon.png = ..\xpike-pacakge-icon.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{25D40BAB-F5C7-4F96-8447-E7302F23305D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "README", "README", "{21850305-5D19-4EB5-BC43-F7D8FA3403D0}"
+	ProjectSection(SolutionItems) = preProject
+		..\CHANGELOG.md = ..\CHANGELOG.md
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{66950DF2-4E2E-4B55-A1C2-3C9B283C9BB2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{41A63CCC-23D4-4EBE-B2B8-3B5E276C56A4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.Library", "..\examples\Example.Library\Example.Library.csproj", "{0A061492-3A92-4E55-95D1-59F57D348228}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "netcore3", "netcore3", "{65CAE6F9-D007-4FB7-9876-FDAFA74273CD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XPike.Drivers.Declarative", "XPike.Drivers.Declarative\XPike.Drivers.Declarative.csproj", "{72E7689E-FD60-445C-BA1B-8373FF340406}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XPike.Drivers.Http.Declarative.Tests", "..\tests\XPike.Drivers.Http.Declarative.Tests\XPike.Drivers.Http.Declarative.Tests.csproj", "{49609B77-8ECC-4C33-AA58-0466B3369D35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPike.Drivers.Http.Declarative", "XPike.Drivers.Http.Declarative\XPike.Drivers.Http.Declarative.csproj", "{BF4F19CF-0BC1-435A-A5BD-607857E31470}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPike.Drivers.Http.Declarative.AspNetCore", "XPike.Drivers.Http.Declarative.AspNetCore\XPike.Drivers.Http.Declarative.AspNetCore.csproj", "{AB45A321-D1AF-49F3-A576-8ABD9354E8BF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A061492-3A92-4E55-95D1-59F57D348228}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A061492-3A92-4E55-95D1-59F57D348228}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A061492-3A92-4E55-95D1-59F57D348228}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A061492-3A92-4E55-95D1-59F57D348228}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72E7689E-FD60-445C-BA1B-8373FF340406}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72E7689E-FD60-445C-BA1B-8373FF340406}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72E7689E-FD60-445C-BA1B-8373FF340406}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72E7689E-FD60-445C-BA1B-8373FF340406}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49609B77-8ECC-4C33-AA58-0466B3369D35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49609B77-8ECC-4C33-AA58-0466B3369D35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49609B77-8ECC-4C33-AA58-0466B3369D35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49609B77-8ECC-4C33-AA58-0466B3369D35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF4F19CF-0BC1-435A-A5BD-607857E31470}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF4F19CF-0BC1-435A-A5BD-607857E31470}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF4F19CF-0BC1-435A-A5BD-607857E31470}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF4F19CF-0BC1-435A-A5BD-607857E31470}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB45A321-D1AF-49F3-A576-8ABD9354E8BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB45A321-D1AF-49F3-A576-8ABD9354E8BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB45A321-D1AF-49F3-A576-8ABD9354E8BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB45A321-D1AF-49F3-A576-8ABD9354E8BF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0A061492-3A92-4E55-95D1-59F57D348228} = {25D40BAB-F5C7-4F96-8447-E7302F23305D}
+		{65CAE6F9-D007-4FB7-9876-FDAFA74273CD} = {25D40BAB-F5C7-4F96-8447-E7302F23305D}
+		{72E7689E-FD60-445C-BA1B-8373FF340406} = {66950DF2-4E2E-4B55-A1C2-3C9B283C9BB2}
+		{49609B77-8ECC-4C33-AA58-0466B3369D35} = {41A63CCC-23D4-4EBE-B2B8-3B5E276C56A4}
+		{BF4F19CF-0BC1-435A-A5BD-607857E31470} = {66950DF2-4E2E-4B55-A1C2-3C9B283C9BB2}
+		{AB45A321-D1AF-49F3-A576-8ABD9354E8BF} = {66950DF2-4E2E-4B55-A1C2-3C9B283C9BB2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A8B0AD5C-D18D-41D9-BA62-4A0858CA0D5C}
+	EndGlobalSection
+EndGlobal

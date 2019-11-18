@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
+    <PackageReference Include="protobuf-net" Version="2.4.4" />
+    <PackageReference Include="XPike.Configuration.Microsoft.AspNetCore" Version="1.0.0" />
+    <PackageReference Include="XPike.Settings.AspNetCore" Version="1.0.1" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+    <PackageReference Include="coverlet.collector" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\examples\Example.Library\Example.Library.csproj" />
+    <ProjectReference Include="..\..\src\XPike.Drivers.Http.Declarative.AspNetCore\XPike.Drivers.Http.Declarative.AspNetCore.csproj" />
+  </ItemGroup>
+
+</Project>
