@@ -7,7 +7,7 @@ using XPike.Settings;
 namespace XPike.Drivers.Http.Declarative.Tests
 {
     public class TestDriver
-        : HttpDriverBase,
+        : HttpDriverBase<TestDriver>,
           ITestDriver
     {
         private readonly ISettings<HttpDriverSettings> _options;
@@ -20,8 +20,8 @@ namespace XPike.Drivers.Http.Declarative.Tests
 
         public override HttpDriverSettings Settings => _options.Value;
 
-        public TestDriver(ISettings<HttpDriverSettings> options, HttpClient client, ISettings<TestDriverSettings> testDriverOptions)
-            : base(client)
+        public TestDriver(ISettings<HttpDriverSettings> options, IHttpClientProvider<TestDriver> clientProvider, ISettings<TestDriverSettings> testDriverOptions)
+            : base(clientProvider)
         {
             _options = options;
             _testDriverOptions = testDriverOptions;

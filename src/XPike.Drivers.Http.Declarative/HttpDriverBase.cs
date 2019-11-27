@@ -10,8 +10,9 @@ using XPike.Drivers.Declarative;
 
 namespace XPike.Drivers.Http.Declarative
 {
-    public abstract class HttpDriverBase
+    public abstract class HttpDriverBase<TImplementation>
         : IHttpDriver
+        where TImplementation : IHttpDriver
     {
         private static readonly IHttpRouteEvaluator _httpRouteEvaluator = new HttpRouteEvaluator();
 
@@ -23,16 +24,16 @@ namespace XPike.Drivers.Http.Declarative
 
         public abstract HttpDriverSettings Settings { get; }
 
-        protected HttpDriverBase(HttpClient client)
+        protected HttpDriverBase(IHttpClientProvider<TImplementation> provider)
         {
-            Client = client;
+            Client = provider.Client;
             
             Client.DefaultRequestHeaders.Add("User-Agent", GetUserAgent());
             Client.Timeout = Timeout.InfiniteTimeSpan;
         }
 
         private string GetUserAgent() =>
-            $"{GetType()} v{GetType().Assembly.GetName().Version} ({typeof(HttpDriverBase)} v{typeof(HttpDriverBase).Assembly.GetName().Version})";
+            $"{GetType()} v{GetType().Assembly.GetName().Version} (XPike Declarative Drivers / HttpDriverBase v{typeof(HttpDriverBase<TImplementation>).Assembly.GetName().Version})";
 
         public async Task<TResponse> GetHttpResponseAsync<TRequest, TResponse>(TRequest request,
                                                                                TimeSpan? timeout = null,

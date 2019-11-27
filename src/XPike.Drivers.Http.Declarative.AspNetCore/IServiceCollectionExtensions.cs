@@ -28,7 +28,12 @@ namespace XPike.Drivers.Http.Declarative.AspNetCore
                                                    configuration.GetSection(typeof(HttpDriverSettings).FullName.Replace(".", ":"))
                                                                 .Bind(options));
 
+            services.AddScoped(typeof(IInjectedHttpClientProvider<>), typeof(InjectedHttpClientProvider<>));
+            services.AddScoped(typeof(IFactoryHttpClientProvider<>), typeof(FactoryHttpClientProvider<>));
             services.AddSingleton<IHttpRouteEvaluator, HttpRouteEvaluator>();
+
+            services.AddScoped(typeof(IHttpClientProvider<>),
+                               provider => provider.GetRequiredService(typeof(IFactoryHttpClientProvider<>)));
 
             return services;
         }
@@ -36,25 +41,12 @@ namespace XPike.Drivers.Http.Declarative.AspNetCore
         public static IHttpClientBuilder AddHttpDeclarativeDriver<TInterface, TImplementation>(this IServiceCollection services)
             where TInterface : class, IDriveHttp
             where TImplementation : class, TInterface =>
-            services.AddHttpClient<TInterface, TImplementation>();
-
-        public static IHttpClientBuilder AddHttpDeclarativeDriver<TInterface, TImplementation>(this IServiceCollection services,
-                                                                                               string name)
-            where TInterface : class, IDriveHttp
-            where TImplementation : class, TInterface =>
-            services.AddHttpClient<TInterface, TImplementation>(name);
+            services.AddHttpClient(typeof(TImplementation).FullName);
 
         public static IHttpClientBuilder AddHttpDeclarativeDriver<TInterface, TImplementation>(this IServiceCollection services,
                                                                                                Action<IServiceProvider, HttpClient> configureAction)
             where TInterface : class, IDriveHttp
             where TImplementation : class, TInterface =>
-            services.AddHttpClient<TInterface, TImplementation>(configureAction);
-
-        public static IHttpClientBuilder AddHttpDeclarativeDriver<TInterface, TImplementation>(this IServiceCollection services,
-                                                                                               string name,
-                                                                                               Action<IServiceProvider, HttpClient> configureAction)
-            where TInterface : class, IDriveHttp
-            where TImplementation : class, TInterface =>
-            services.AddHttpClient<TInterface, TImplementation>(name, configureAction);
+            services.AddHttpClient<TInterface, TImplementation>(typeof(TImplementation).FullName, configureAction);
     }
 }

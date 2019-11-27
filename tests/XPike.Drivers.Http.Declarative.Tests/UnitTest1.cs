@@ -17,7 +17,7 @@ namespace XPike.Drivers.Http.Declarative.Tests
                                                                 DefaultTimeout = "00:00:15",
                                                                 ProxyUrl = ""
                                                             }),
-                           new HttpClient(),
+                           new InjectedHttpClientProvider<TestDriver>(new HttpClient()),
                            new Settings<TestDriverSettings>(typeof(TestDriverSettings).FullName,
                                                             new TestDriverSettings
                                                             {
