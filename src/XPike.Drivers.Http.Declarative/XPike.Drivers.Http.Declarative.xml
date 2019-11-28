@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>XPike.Drivers.Http.Declarative</name>
+    </assembly>
+    <members>
+        <member name="T:XPike.Drivers.Http.Declarative.EnumExtensions">
+             <summary>
+             Provides extension methods for working with Enums with Declarative HTTP Drivers.
+            
+             Exposes:
+             - GetStatusCode()
+             </summary>
+        </member>
+        <member name="M:XPike.Drivers.Http.Declarative.EnumExtensions.GetStatusCode``1(``0,System.Nullable{System.Net.HttpStatusCode},System.Boolean)">
+            <summary>
+            Returns the value of the StatusCodeAttribute applied to an Enum Member (aka "name", "value", "field").
+            Optionally allows a default value to be returned if no StatusCodeAttribute is specified for the Enum Member,
+            and to indicate if an InvalidOperationException should be thrown when no value is found.
+            </summary>
+            <typeparam name="TEnum">The type of the Enum Member whose Status Code should be retrieved.</typeparam>
+            <param name="value">The Enum Member to retrieve a Status Code from.</param>
+            <param name="defaultValue">An optional HttpStatusCode to be returned if no value is found on the Enum Member.</param>
+            <param name="throwIfMissing">Optionally indicates, when true, that an InvalidOperationException should be thrown if no value is found on the Enum Member.</param>
+            <returns></returns>
+        </member>
+        <member name="T:XPike.Drivers.Http.Declarative.EvaluatedHttpRoute">
+            <summary>
+            Specifies the details derived after fully evaluating HttpRouteAttribute.
+            </summary>
+        </member>
+        <member name="P:XPike.Drivers.Http.Declarative.EvaluatedHttpRoute.HostInfo">
+            <summary>
+            The Host Info (its Base URL) to be used when connecting to the API.
+            </summary>
+        </member>
+        <member name="M:XPike.Drivers.Http.Declarative.EvaluatedHttpRoute.#ctor(XPike.Drivers.Http.Declarative.HttpRouteInfo)">
+            <summary>
+            Creates a new Evaluated Route object using only the basic information from a HttpRouteInfo object.
+            Used as the first step in converting the HttpRouteInfo from a HttpRouteAttribute into an EvaluatedHttpRoute.
+            </summary>
+            <param name="httpRoute"></param>
+        </member>
+        <member name="T:XPike.Drivers.Http.Declarative.HttpDriverSettings">
+            <summary>
+            Specifies the base options for Declarative HTTP Drivers.
+            These will apply to all derived implementations of HttpDriverBase unless overridden in the constructor.
+            Intended to be sourced via DI through XPike ISettings.
+            </summary>
+        </member>
+        <member name="P:XPike.Drivers.Http.Declarative.HttpDriverSettings.ProxyUrl">
+            <summary>
+            The URL of the HTTP Proxy Server to be used.
+            Leave blank if no Proxy should be used.
+            </summary>
+        </member>
+        <member name="P:XPike.Drivers.Http.Declarative.HttpDriverSettings.DefaultTimeout">
+            <summary>
+            The default timeout to apply to outbound connections.
+            This should be specified as a TimeSpan string, eg: "00:00:60" for 60 seconds.
+            If not specified, a default timeout of 60 seconds will be applied.
+            </summary>
+        </member>
+        <member name="T:XPike.Drivers.Http.Declarative.HttpHostInfo">
+            <summary>
+            Specifies the Host information (its Base URL) for connecting to an API over HTTP.
+            Specific endpoint URLs (routes) are specified on each Contract using a HttpRouteAttribute.
+            </summary>
+        </member>
+        <member name="P:XPike.Drivers.Http.Declarative.HttpHostInfo.BaseUri">
+            <summary>
+            The Base URI to use when connecting to the API.
+            </summary>
+        </member>
+        <member name="T:XPike.Drivers.Http.Declarative.HttpRouteEvaluator">
+            <summary>
+            Evaluates HttpRouteInfo
+            </summary>
+        </member>
+        <member name="T:XPike.Drivers.Http.Declarative.HttpRouteInfo">
+            <summary>
+            Specifies the information about a Contract's Route.
+            
+            Attach this to a Request Contract (a class that implements IRespondWith)
+            by using a HttpRouteAttribute so that it can be used with HttpDriverBase.
+            </summary>
+        </member>
+        <member name="P:XPike.Drivers.Http.Declarative.HttpRouteInfo.Verb">
+            <summary>
+            The HTTP Verb (eg GET, POST, PUT, DELETE) which should be used to access the endpoint.
+            </summary>
+        </member>
+        <member name="P:XPike.Drivers.Http.Declarative.HttpRouteInfo.Route">
+            <summary>
+            The Route format to use when accessing the endpoint.
+            This should be a relative path, without the Base URL of the service.
+            Replacement values can be specified by using {Variable} in the Route.
+            These will be replaced with corresponding values from those at the root level of the Contract.
+            Fields not specified here will be added to the QueryString for GET/DELETE requests, or posted in the Body for POST/PUT requests.
+            </summary>
+        </member>
+        <member name="P:XPike.Drivers.Http.Declarative.HttpRouteInfo.Format">
+            <summary>
+            The serialization (or communication, for gRPC) format to use
+            when transmitting the request over HTTP.
+            </summary>
+        </member>
+        <member name="T:XPike.Drivers.Http.Declarative.IDriveHttp`2">
+            <summary>
+            You shouldn't *need* to use this interface, unless...
+            You wanted to provide a type-specific override for GetHttpResponseAsync and GetHttpExchangeAsync.
+            For "normal" driver purposes, you should define methods in your driver interface with use-case-specific names.
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+        </member>
+        <member name="T:XPike.Drivers.Http.Declarative.StatusCodeAttribute">
+            <summary>
+            An attribute that can be applied to an Enum Member (aka "name", "value", "field")
+            to indicate the HTTP Status Code that it corresponds to.
+            </summary>
+        </member>
+        <member name="P:XPike.Drivers.Http.Declarative.StatusCodeAttribute.StatusCode">
+            <summary>
+            The Status Code represented by this StatusCodeAttribute.
+            </summary>
+        </member>
+        <member name="M:XPike.Drivers.Http.Declarative.StatusCodeAttribute.#ctor(System.Net.HttpStatusCode)">
+            <summary>
+            Creates a new StatusCodeAttribute.
+            </summary>
+            <param name="statusCode">The HttpStatusCode to be represented by the attribute.</param>
+        </member>
+    </members>
+</doc>
