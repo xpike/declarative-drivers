@@ -42,7 +42,7 @@ namespace XPike.Drivers.Http.Declarative
             where TRequest : class, IRespondWith<TResponse>
             where TResponse : class, IRespondTo<TRequest>
         {
-            var exchange = await GetHttpExchangeAsync<TRequest, TResponse>(request, timeout, ct, headers);
+            var exchange = await GetHttpExchangeAsync<TRequest, TResponse>(request, timeout, ct, headers).ConfigureAwait(false);
             return exchange?.Successful ?? false ? exchange.Response : null;
         }
 
@@ -147,7 +147,7 @@ namespace XPike.Drivers.Http.Declarative
                 foreach (var encoding in formatter.SupportedMediaTypes)
                     message.Headers.Accept.TryParseAdd(encoding.MediaType);
 
-                var response = await Client.SendAsync(message, GetCancellationToken(GetTimeout(timeout), ct));
+                var response = await Client.SendAsync(message, GetCancellationToken(GetTimeout(timeout), ct)).ConfigureAwait(false);
 
                 exchange.Transmitted = true;
 
@@ -167,7 +167,7 @@ namespace XPike.Drivers.Http.Declarative
                     try
                     {
                         exchange.ResponseHeaders = response.Headers.ToDictionary(x => x.Key, x => string.Join(";", x.Value));
-                        exchange.RawResponse = await response.Content.ReadAsStringAsync();
+                        exchange.RawResponse = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                         exchange.ResponseReceived = true;
                     }
                     catch (Exception ex)
@@ -175,7 +175,7 @@ namespace XPike.Drivers.Http.Declarative
                         exchange.Exception = ex;
                     }
 
-                    exchange.Response = await response.Content.ReadAsAsync<TResponse>();
+                    exchange.Response = await response.Content.ReadAsAsync<TResponse>().ConfigureAwait(false);
                 }
                 catch (Exception ex)
                 {
@@ -203,7 +203,7 @@ namespace XPike.Drivers.Http.Declarative
                                                                                                 IDictionary<string, string> headers = null)
             where TRequest : class, IRespondWith<TResponse>
             where TResponse : class, IRespondTo<TRequest> =>
-            await GetHttpExchangeAsync<TRequest, TResponse>(request, timeout, ct, headers);
+            await GetHttpExchangeAsync<TRequest, TResponse>(request, timeout, ct, headers).ConfigureAwait(false);
 
         public Task<TResponse> GetResponseAsync<TRequest, TResponse>(TRequest request,
                                                                      TimeSpan? timeout = null,

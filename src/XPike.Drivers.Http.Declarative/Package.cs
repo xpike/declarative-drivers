@@ -7,7 +7,7 @@ namespace XPike.Drivers.Http.Declarative
     {
         public void RegisterPackage(IDependencyCollection dependencyCollection)
         {
-            dependencyCollection.LoadPackage(new XPike.Settings.Package());
+            dependencyCollection.LoadPackage(new XPike.Configuration.Package());
 
             dependencyCollection.RegisterSingleton<IHttpRouteEvaluator, HttpRouteEvaluator>();
             dependencyCollection.RegisterScoped(typeof(IInjectedHttpClientProvider<>), typeof(InjectedHttpClientProvider<>));
