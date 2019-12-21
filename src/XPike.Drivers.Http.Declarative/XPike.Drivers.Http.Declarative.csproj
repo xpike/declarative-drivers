@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
-    <PackageReference Include="XPike.Configuration" Version="1.1.2" />
+    <PackageReference Include="XPike.Configuration" Version="1.1.6" />
   </ItemGroup>
 
   <!-- .NET Standard 2.0 references, compilation flags and build options -->
