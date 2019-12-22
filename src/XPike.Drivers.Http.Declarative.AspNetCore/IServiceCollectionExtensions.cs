@@ -27,7 +27,8 @@ namespace XPike.Drivers.Http.Declarative.AspNetCore
             //        .Configure<IConfiguration>((options, configuration) =>
             //                                       configuration.GetSection(typeof(HttpDriverSettings).FullName.Replace(".", ":"))
             //                                                    .Bind(options));
-
+            
+            services.AddHttpClient();
             services.AddScoped(typeof(IInjectedHttpClientProvider<>), typeof(InjectedHttpClientProvider<>));
             services.AddScoped(typeof(IFactoryHttpClientProvider<>), typeof(FactoryHttpClientProvider<>));
             services.AddSingleton<IHttpRouteEvaluator, HttpRouteEvaluator>();
