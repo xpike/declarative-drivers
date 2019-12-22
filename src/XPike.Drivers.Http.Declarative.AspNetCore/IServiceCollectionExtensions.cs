@@ -23,17 +23,17 @@ namespace XPike.Drivers.Http.Declarative.AspNetCore
         /// <returns></returns>
         public static IServiceCollection AddXPikeHttpDeclarativeDrivers(this IServiceCollection services)
         {
-            services.AddOptions<HttpDriverSettings>()
-                    .Configure<IConfiguration>((options, configuration) =>
-                                                   configuration.GetSection(typeof(HttpDriverSettings).FullName.Replace(".", ":"))
-                                                                .Bind(options));
+            //services.AddOptions<HttpDriverSettings>()
+            //        .Configure<IConfiguration>((options, configuration) =>
+            //                                       configuration.GetSection(typeof(HttpDriverSettings).FullName.Replace(".", ":"))
+            //                                                    .Bind(options));
 
             services.AddScoped(typeof(IInjectedHttpClientProvider<>), typeof(InjectedHttpClientProvider<>));
             services.AddScoped(typeof(IFactoryHttpClientProvider<>), typeof(FactoryHttpClientProvider<>));
             services.AddSingleton<IHttpRouteEvaluator, HttpRouteEvaluator>();
 
-            services.AddScoped(typeof(IHttpClientProvider<>),
-                               provider => provider.GetRequiredService(typeof(IFactoryHttpClientProvider<>)));
+            services.AddScoped(typeof(IHttpClientProvider<>), typeof(InjectedHttpClientProvider<>));
+                               //provider => provider.GetRequiredService(typeof(IFactoryHttpClientProvider<>)));
 
             return services;
         }
